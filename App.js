@@ -5,8 +5,10 @@ import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import Home from './screens/Home';
 import Login from './screens/Login';
 import Register from './screens/Register';
+import Layout from './screens/Layout';
 import axios from 'axios';
 const Stack = createNativeStackNavigator();
+import "react-native-gesture-handler";
 
 axios.defaults.baseURL = 'https://smart-school-app-back.onrender.com';
 export default function App() {
@@ -20,6 +22,7 @@ export default function App() {
         />
         <Stack.Screen name="Login" component={Login} />
         <Stack.Screen name="Register" component={Register} />
+        <Stack.Screen name="Layout" component={Layout} />
       </Stack.Navigator>
     </NavigationContainer>
   );

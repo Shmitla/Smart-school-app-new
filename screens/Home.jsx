@@ -16,7 +16,7 @@ export default function Home({ navigation }) {
         onPress={() => navigation.navigate("Login")}
         titleStyle={homeStyles.logiBtnText}
       >
-        Get me to login page!
+       Get Start
       </Button>
     </ScrollView>
   );

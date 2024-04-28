@@ -63,6 +63,9 @@ export default function Login({ navigation }) {
           Register
         </Text>
       </Text>
+      <Button title={'layout'} onPress={()=>{navigation.navigate('Layout')}}/>
+
+   
     </View>
   );
 }
