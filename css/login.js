@@ -34,6 +34,7 @@ const loginStyles = StyleSheet.create({
     flex: 1, // Take remaining space
     paddingVertical: 10,
     fontSize: 16, // Adjust font size
+    textTransform:"lowercase"
   },
   forgotPassword: {
     marginBottom: 10,
