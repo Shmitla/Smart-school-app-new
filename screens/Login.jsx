@@ -9,7 +9,10 @@ import { Store } from "../context/DateStor";
 
 export default function Login({ navigation }) {
   const { user, getCookies } = Store();
-  const [loginInfo, setLoginInfo] = useState({});
+  const [loginInfo, setLoginInfo] = useState({
+    email: "",
+    password: ""
+  });
 
   const handleChange = (name, value) => {
     setLoginInfo({ ...loginInfo, [name]: value });
@@ -20,7 +23,7 @@ export default function Login({ navigation }) {
       .post("/users/login", loginInfo)
       .then((res) => {
         if (res.status === 200) {
-          console.log(res.data);
+          setLoginInfo({ email: "", password: "" });
           storage.save({ key: "userInfo", data: res.data.user });
           getCookies();
           Alert.alert(res.data.message);
@@ -40,9 +43,9 @@ export default function Login({ navigation }) {
   }, []);
 
   useEffect(() => {
-    if (user) {
+    // if (user) {
       navigation.navigate("Profile");
-    }
+    // }
   }, [user]);
   return (
     <View style={loginStyles.container}>
@@ -64,6 +67,7 @@ export default function Login({ navigation }) {
             name="email"
             placeholder="Enter your Email"
             onChangeText={(value) => handleChange("email", value)}
+            value={loginInfo.email}
           />
         </View>
         <View style={loginStyles.inputContainer}>
@@ -74,6 +78,7 @@ export default function Login({ navigation }) {
             placeholder="Password"
             onChangeText={(value) => handleChange("password", value)}
             secureTextEntry={true}
+            value={loginInfo.password}
           />
         </View>
         <Text

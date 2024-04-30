@@ -43,7 +43,7 @@ const layoutStyles = StyleSheet.create({
         gap:10,
         flexDirection:"row",
         padding:15,
-        backgroundColor:"#ff0000",
+        // backgroundColor:"",
         margin:5,
         borderRadius:20   
     },

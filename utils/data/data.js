@@ -12,7 +12,7 @@ export const admin = [
   {
     title: "Students",
     icon: "school",
-    screen: "Students"
+    screen: "All Stutents"
   },
   {
     title: "Departments",
@@ -25,9 +25,9 @@ export const admin = [
     screen: "Subjects"
   },
   {
-    title:"Notices",
-    icon:"notifications",
-    screen:"Notices"
+    title: "Notices",
+    icon: "notifications",
+    screen: "Notices"
   }
 ];
 export const student = [
