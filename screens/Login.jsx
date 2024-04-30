@@ -65,6 +65,7 @@ export default function Login({ navigation }) {
             placeholder="Enter your phone"
             onChangeText={(value) => handleChange("phone", value)}
             value={loginInfo.phone}
+            keyboardType="phone-pad"
           />
         </View>
         <View style={loginStyles.inputContainer}>
