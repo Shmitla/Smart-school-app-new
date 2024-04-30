@@ -1,28 +1,33 @@
 export const admin = [
   {
-    title: "home",
-    icon: "star",
-    screen: "Home"
-  },
-  {
-    title: "home",
+    title: "Home",
     icon: "home",
     screen: "Home"
   },
   {
-    title: "home",
-    icon: "Home",
-    screen: "Home"
+    title: "Admins",
+    icon: "person",
+    screen: "Admins"
   },
   {
-    title: "home",
-    icon: "Home",
-    screen: "Home"
+    title: "Students",
+    icon: "school",
+    screen: "Students"
   },
   {
-    title: "home",
-    icon: "Home",
-    screen: "Home"
+    title: "Departments",
+    icon: "feed",
+    screen: "Departments"
+  },
+  {
+    title: "Subjects",
+    icon: "subject",
+    screen: "Subjects"
+  },
+  {
+    title:"Notices",
+    icon:"notifications",
+    screen:"Notices"
   }
 ];
 export const student = [

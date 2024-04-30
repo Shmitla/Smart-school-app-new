@@ -1,11 +1,12 @@
 import * as React from "react";
 import { Text, TouchableOpacity, View } from "react-native";
 import { Drawer } from "react-native-drawer-layout";
-import { Button, Icon, SearchBar } from "@rneui/themed";
+import { Button, Icon, SearchBar,Image } from "@rneui/themed";
 import { SafeAreaProvider } from "react-native-safe-area-context";
 import { admin } from "../utils/data/data";
 import layoutStyles from "../css/layout";
 import AdminComponent from "./AdminComponent";
+import logo from "../assets/logo.png";
 
 export default function Layout({ navigation, children }) {
   const [open, setOpen] = React.useState(false);
@@ -19,7 +20,9 @@ export default function Layout({ navigation, children }) {
           onClose={() => setOpen(false)}
           renderDrawerContent={() => {
             return (
+              <View style={layoutStyles.drawer} >
               <View style={layoutStyles.list}>
+                <Image source={logo} style={layoutStyles.logo}></Image>
                 <View>
                   {admin.map((ele, i) => (
                     <TouchableOpacity
@@ -36,11 +39,12 @@ export default function Layout({ navigation, children }) {
                   ))}
                 </View>
                 <TouchableOpacity>
-                  <View style={layoutStyles.items}>
+                  <View style={layoutStyles.logout}>
                     <Icon name="logout" />
                     <Text style={layoutStyles.text}>Log out </Text>
                   </View>
                 </TouchableOpacity>
+              </View>
               </View>
             );
           }}
