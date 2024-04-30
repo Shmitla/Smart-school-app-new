@@ -53,7 +53,6 @@ export default function Register({ navigation }) {
           leftIcon={{
             type: "font-awesome",
             name: "envelope",
-            textTransform: "lowercase"
           }}
           onChangeText={(value) => handleChange("email", value)}
           inputStyle={{ paddingHorizontal: 10, color: "#000" }}

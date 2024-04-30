@@ -61,9 +61,6 @@ export default function Login({ navigation }) {
           />
           <Input
             style={loginStyles.input}
-            inputStyle={{
-              textTransform: "lowercase"
-            }}
             name="email"
             placeholder="Enter your Email"
             onChangeText={(value) => handleChange("email", value)}
