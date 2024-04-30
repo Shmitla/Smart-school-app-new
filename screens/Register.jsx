@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Alert, View } from "react-native";
+import { Alert, ScrollView, View } from "react-native";
 import { Input, Button, Text, Card } from "@rneui/themed";
 import registerStyles from "../css/register";
 import axios from "axios";
@@ -50,7 +50,11 @@ export default function Register({ navigation }) {
           style={registerStyles.input}
           name="email"
           placeholder="Email"
-          leftIcon={{ type: "font-awesome", name: "envelope" }}
+          leftIcon={{
+            type: "font-awesome",
+            name: "envelope",
+            textTransform: "lowercase"
+          }}
           onChangeText={(value) => handleChange("email", value)}
           inputStyle={{ paddingHorizontal: 10, color: "#000" }}
           placeholderTextColor="#000"

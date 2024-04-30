@@ -10,6 +10,7 @@ import logo from "../assets/logo.png";
 import { Store } from "../context/DateStor";
 import axios from "axios";
 import storage from "../utils/storage/storage";
+import Login from "../screens/Login";
 
 export default function Layout({ navigation, children }) {
   const [open, setOpen] = React.useState(false);
@@ -26,6 +27,9 @@ export default function Layout({ navigation, children }) {
       });
   };
   useEffect(() => {
+    if(!user){
+      navigation.navigate(Login)
+    }
     getNewStuedent();
   }, []);
   return (
