@@ -10,7 +10,7 @@ import { Store } from "../context/DateStor";
 export default function Login({ navigation }) {
   const { user, getCookies } = Store();
   const [loginInfo, setLoginInfo] = useState({
-    email: "",
+    phone: "",
     password: ""
   });
 
@@ -23,7 +23,7 @@ export default function Login({ navigation }) {
       .post("/users/login", loginInfo)
       .then((res) => {
         if (res.status === 200) {
-          setLoginInfo({ email: "", password: "" });
+          setLoginInfo({ phone: "", password: "" });
           storage.save({ key: "userInfo", data: res.data.user });
           getCookies();
           Alert.alert(res.data.message);
@@ -61,10 +61,10 @@ export default function Login({ navigation }) {
           />
           <Input
             style={loginStyles.input}
-            name="email"
-            placeholder="Enter your Email"
-            onChangeText={(value) => handleChange("email", value)}
-            value={loginInfo.email}
+            name="phone"
+            placeholder="Enter your phone"
+            onChangeText={(value) => handleChange("phone", value)}
+            value={loginInfo.phone}
           />
         </View>
         <View style={loginStyles.inputContainer}>
