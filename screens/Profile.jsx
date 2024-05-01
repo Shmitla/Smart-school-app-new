@@ -5,7 +5,6 @@ import AdminComponent from '../components/AdminComponent'
 
 export default function Profile({ navigation }) {
   return( <Layout navigation={navigation}>
-
   <AdminComponent/>
   </Layout>
 )}
