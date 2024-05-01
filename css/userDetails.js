@@ -2,7 +2,7 @@ import { StyleSheet } from "react-native";
 
  const userDetailsStyles = StyleSheet.create({
     container: {
-        padding: 20,
+    
       },
       item: {
         marginBottom: 10,

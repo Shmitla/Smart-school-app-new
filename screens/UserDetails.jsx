@@ -1,7 +1,7 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
-import { ScrollView , Text, View, Image } from "react-native";
-import userDetailsStyles from '../css/userDetails';
+import { ScrollView, Text, View, Image } from "react-native";
+import userDetailsStyles from "../css/userDetails";
 
 export default function UserDetails({ navigation, route }) {
   const { id } = route.params;
@@ -17,14 +17,20 @@ export default function UserDetails({ navigation, route }) {
       });
   }
 
-  useEffect(()=>{
+  useEffect(() => {
     getDetails();
-  },[])
+  }, []);
   return (
     <ScrollView>
       <View style={userDetailsStyles.container}>
         <View>
-          <Image source={{uri:"https://i.pinimg.com/564x/d0/89/d8/d089d8d3296d1966b7bf8fbf26527958.jpg?fbclid=IwZXh0bgNhZW0CMTAAAR3m2oNuLRiUsrrhoED2JfTujXqRB1Ax5Z4if_gK3YST4Ew-GLX11teEvsA_aem_AYJzxo_CScU6jHTPfZ2pEiNOLvfliveUUsYqH0qhHcp0IDwf_LgHdLYNUHtvzjaETL5dSehR5x-MRqmBPA6k5P0v"}} width={'100%'} alt="img" />
+          <Image
+            source={{
+              uri: "https://i.pinimg.com/564x/61/cc/b5/61ccb579c0aec956c711596297ccb878.jpg"
+            }}
+            alt="img"
+            style={{ width: "100%", height: 500 }}
+          />
         </View>
       </View>
     </ScrollView>

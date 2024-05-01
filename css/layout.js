@@ -28,7 +28,8 @@ const layoutStyles = StyleSheet.create({
         padding:15,
         backgroundColor:"#ffe5ec",
         margin:5,
-        borderRadius:20
+        borderRadius:20,
+        width:"100%",
 
     },
     text:{
