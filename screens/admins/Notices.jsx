@@ -10,6 +10,7 @@ import { SearchBar } from "@rneui/themed";
 import axios from "axios";
 import storage from "../../utils/storage/storage";
 import { Store } from "../../context/DateStor";
+import Layout from "../../components/Layout";
 
 export default function Notices({ navigation }) {
   const { newStudents, getCookies } = Store();
@@ -39,7 +40,7 @@ export default function Notices({ navigation }) {
     getStudentData();
   }, []);
   return (
-    <View>
+    <Layout navigation={navigation}>
       <SearchBar
         platform="default"
         lightTheme
@@ -80,7 +81,7 @@ export default function Notices({ navigation }) {
           <Text style={styles.text}> this Student not Exist </Text>
         )}
       </ScrollView>
-    </View>
+    </Layout>
   );
 }
 
@@ -89,7 +90,8 @@ const styles = StyleSheet.create({
     padding: 10,
     marginVertical: 5,
     marginHorizontal: 10,
-    backgroundColor: "#f0c000"
+    backgroundColor: "#f0c000",
+    borderRadius: 20
   },
   text: {
     fontSize: 20

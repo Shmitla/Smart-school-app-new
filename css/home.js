@@ -33,11 +33,14 @@ const homeStyles = StyleSheet.create({
     borderRadius: 20,
     justifyContent: "center", // Align text vertically
     alignItems: "center", // Align text horizontally
+    display: "flex", // Align text vertically
   },
   logiBtnText: {
     fontSize: 20,
+    width:"100%",
     fontWeight: "600",
     color: "#fff",
+    textAlign: "center",
   },
 });
 

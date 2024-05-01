@@ -13,6 +13,9 @@ import Profile from "./screens/Profile";
 import Stutents from "./screens/admins/Stutents";
 import UserDetails from "./screens/UserDetails";
 import Notices from "./screens/admins/Notices";
+import Admins from "./screens/admins/Admins";
+import AddnewAdmin from "./screens/admins/AddnewAdmin";
+import Layout from "./components/Layout";
 
 axios.defaults.baseURL = "https://smart-school-app-back.onrender.com";
 export default function App() {
@@ -31,6 +34,8 @@ export default function App() {
           <Stack.Screen name="All Stutents" component={Stutents} />
           <Stack.Screen name="Details" component={UserDetails} />
           <Stack.Screen name="Notices" component={Notices} />
+          <Stack.Screen name="Admins" component={Admins} />
+          <Stack.Screen name="Add New Admin" component={AddnewAdmin} />
         </Stack.Navigator>
       </NavigationContainer>
     </DataStoreProvider>

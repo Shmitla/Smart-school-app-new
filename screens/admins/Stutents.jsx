@@ -10,22 +10,12 @@ import { SearchBar } from "@rneui/themed";
 import axios from "axios";
 import storage from "../../utils/storage/storage";  
 import { Store } from "../../context/DateStor";
+import Layout from "../../components/Layout";
 
 export default function Stutents({ navigation }) {
-  const { students, getCookies } = Store();
+  const { students, getCookies, user, getStudentData } = Store();
   const [value, setValue] = useState("");
   const [data, setData] = useState(students ? students : []);
-  async function getStudentData() {
-    await axios
-      .get("/users/students")
-      .then((res) => {
-        storage.save({ key: "stutent", data: res.data });
-        getCookies();
-      })
-      .catch((err) => {
-        console.log(err);
-      });
-  }
 
   function searchStudent(e) {
     setValue(e);
@@ -36,10 +26,12 @@ export default function Stutents({ navigation }) {
     }
   }
   useEffect(() => {
-    getStudentData();
+    if(user && user._isAdmin){
+      getStudentData();
+    }
   }, []);
   return (
-    <View>
+    <Layout navigation={navigation}>
       <SearchBar
         platform="default"
         lightTheme
@@ -80,7 +72,7 @@ export default function Stutents({ navigation }) {
           <Text style={styles.text}> this Student not Exist </Text>
         )}
       </ScrollView>
-    </View>
+    </Layout>
   );
 }
 
@@ -89,7 +81,9 @@ const styles = StyleSheet.create({
     padding: 10,
     marginVertical: 5,
     marginHorizontal: 10,
-    backgroundColor: "#f0c000"
+    backgroundColor: "#f0c000",
+    borderRadius:20,
+
   },
   text: {
     fontSize: 20

@@ -2,37 +2,30 @@ import React, { useState, useEffect } from "react";
 import { Text, TouchableOpacity, View } from "react-native";
 import { Drawer } from "react-native-drawer-layout";
 import { Button, Icon, Image, Badge } from "@rneui/themed";
+
 import { SafeAreaProvider } from "react-native-safe-area-context";
 import { admin, student } from "../utils/data/data";
 import layoutStyles from "../css/layout";
-import AdminComponent from "./AdminComponent";
 import logo from "../assets/logo.png";
 import { Store } from "../context/DateStor";
-import axios from "axios";
-import storage from "../utils/storage/storage";
-import Login from "../screens/Login";
 
 export default function Layout({ navigation, children }) {
   const [open, setOpen] = React.useState(false);
-  const { user, newStudents, getCookies } = Store();
-  const getNewStuedent = async () => {
-    await axios
-      .get("/users/admin/new_student")
-      .then((res) => {
-        storage.save({ key: "newStudent", data: res.data });
-        getCookies();
-      })
-      .catch((err) => {
-        console.log(err);
-      });
-  };
+  const { user, newStudents, getCookies, logout, getNewStuedent } = Store();
   useEffect(() => {
-    if(!user){
-      navigation.navigate(Login)
+    if (!user) {
+      navigation.navigate("Login");
     }
-    getNewStuedent();
+    if (user && user._isAdmin) {
+      getNewStuedent();
+    }
   }, []);
+  const userLogout = ()=>{
+    logout(); 
+    navigation.navigate("Home");
+  }
   return (
+
     <>
       <SafeAreaProvider>
         <Drawer
@@ -50,6 +43,7 @@ export default function Layout({ navigation, children }) {
                         key={i}
                         onPress={() => {
                           navigation.navigate(ele.screen);
+                          setOpen(false);
                         }}
                       >
                         {ele.title === "Notices" ? (
@@ -77,7 +71,7 @@ export default function Layout({ navigation, children }) {
                       </TouchableOpacity>
                     ))}
                   </View>
-                  <TouchableOpacity>
+                  <TouchableOpacity onPress={userLogout}>
                     <View style={layoutStyles.logout}>
                       <Icon name="logout" />
                       <Text style={layoutStyles.text}>Log out </Text>
@@ -88,13 +82,16 @@ export default function Layout({ navigation, children }) {
             );
           }}
         >
-          <View>
+        <View style={{width :60}}>
+
             <Button
               onPress={() => setOpen((prevOpen) => !prevOpen)}
               icon={{ type: "font-awesome", name: "bars" }}
-              style={{ width: 50 }}
+             style={{width :60  }}
               type="clear"
             />
+        </View>
+          <View>
             {children}
           </View>
         </Drawer>

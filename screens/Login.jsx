@@ -8,7 +8,7 @@ import storage from "../utils/storage/storage";
 import { Store } from "../context/DateStor";
 
 export default function Login({ navigation }) {
-  const { user, getCookies } = Store();
+  const { user, getCookies, setUser, getNewStuedent } = Store();
   const [loginInfo, setLoginInfo] = useState({
     phone: "",
     password: ""
@@ -25,7 +25,7 @@ export default function Login({ navigation }) {
         if (res.status === 200) {
           setLoginInfo({ phone: "", password: "" });
           storage.save({ key: "userInfo", data: res.data.user });
-          getCookies();
+          setUser(res.data.user);
           Alert.alert(res.data.message);
           navigation.navigate("Profile");
         }
@@ -36,7 +36,7 @@ export default function Login({ navigation }) {
       });
   };
   useEffect(() => {
-    getCookies();
+    // getCookies();
     if (user) {
       navigation.navigate("Profile");
     }
@@ -102,12 +102,6 @@ export default function Login({ navigation }) {
           Register
         </Text>
       </Text>
-      <Button
-        title={"layout"}
-        onPress={() => {
-          navigation.navigate("Profile");
-        }}
-      />
     </View>
   );
 }

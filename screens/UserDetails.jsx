@@ -1,5 +1,6 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
+import { ScrollView } from "react-native";
 import { Text, View } from "react-native";
 
 export default function UserDetails({ navigation, route }) {
@@ -20,10 +21,8 @@ export default function UserDetails({ navigation, route }) {
     getDetails();
   },[])
   return (
-    <View>
-      <Text>
-        {JSON.stringify(data)}
-      </Text>
-    </View>
+    <ScrollView>
+      <Text>{JSON.stringify(data)}</Text>
+    </ScrollView>
   );
 }
