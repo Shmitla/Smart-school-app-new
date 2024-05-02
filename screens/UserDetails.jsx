@@ -2,6 +2,7 @@ import axios from "axios";
 import React, { useEffect, useState } from "react";
 import { ScrollView, Text, View, Image } from "react-native";
 import userDetailsStyles from "../css/userDetails";
+import { ListItem, Button } from "@rneui/themed";
 
 export default function UserDetails({ navigation, route }) {
   const { id } = route.params;
@@ -32,6 +33,39 @@ export default function UserDetails({ navigation, route }) {
             style={{ width: "100%", height: 500 }}
           />
         </View>
+        <ListItem bottomDivider>
+          <ListItem.Title>Name : {data?.userName} </ListItem.Title>
+        </ListItem>
+        <ListItem bottomDivider>
+          <ListItem.Title>Email : {data?.email} </ListItem.Title>
+        </ListItem>
+        <ListItem bottomDivider>
+          <ListItem.Title>Phone : {data?.phone} </ListItem.Title>
+        </ListItem>
+        <ListItem bottomDivider>
+          <ListItem.Title>School : {data?.school} </ListItem.Title>
+        </ListItem>
+        <ListItem bottomDivider>
+          <ListItem.Title>
+            Register at : {data.createdAt}
+          </ListItem.Title>
+        </ListItem>
+        <ListItem
+          bottomDivider
+          style={{
+            display: data._isAdmin_confirm ? "none" : null
+          }}
+        >
+          <Button style={{ width: "100%" }} color={"success"}>
+            Accpet
+          </Button>
+          <Button style={{ width: "100%" }} color={"error"}>
+            Refound
+          </Button>
+        </ListItem>
+        <ListItem>
+          <Button>Blocked</Button>
+        </ListItem>
       </View>
     </ScrollView>
   );
