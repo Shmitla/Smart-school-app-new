@@ -37,12 +37,12 @@ export const student = [
     screen: "Home"
   },
   {
-    title: "home",
+    title: "Attendance",
     icon: "Home",
     screen: "Home"
   },
   {
-    title: "home",
+    title: "",
     icon: "Home",
     screen: "Home"
   },
