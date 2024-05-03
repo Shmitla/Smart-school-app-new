@@ -48,7 +48,7 @@ export default function Layout({ navigation, children }) {
                       >
                         {ele.title === "Notices" ? (
                           <View style={layoutStyles.items}>
-                            {newStudents ? (
+                            {newStudents.length>0 ? (
                               <Badge
                                 status="error"
                                 containerStyle={{

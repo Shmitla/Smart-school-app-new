@@ -3,9 +3,11 @@ import React, { useEffect, useState } from "react";
 import { ScrollView, Text, View, Image } from "react-native";
 import userDetailsStyles from "../css/userDetails";
 import { ListItem, Button } from "@rneui/themed";
+import { Store } from "../context/DateStor";
 
 export default function UserDetails({ navigation, route }) {
   const { id } = route.params;
+  const { getStudentData, getNewStuedent } = Store();
   const [data, setData] = useState({});
   async function getDetails() {
     await axios
@@ -16,6 +18,46 @@ export default function UserDetails({ navigation, route }) {
       .catch((err) => {
         console.log(err);
       });
+  }
+
+  async function studentState(title) {
+    if (title === "Blocked") {
+      await axios
+        .patch("/users/", { id, _isBlocked: !data._isBlocked })
+        .then((res) => {
+          getDetails();
+          alert(res.data.message);
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+      return;
+    }
+    if (title === "Accpet") {
+      await axios
+        .patch("/users/", { id, _isAdmin_confirm: true })
+        .then((res) => {
+          getNewStuedent();
+          getStudentData();
+          alert(res.data.message);
+          navigation.navigate("Notices");
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+    } else {
+      await axios
+        .delete(`/users/${id}`)
+        .then((res) => {
+          getNewStuedent();
+          getStudentData();
+          alert(res.data);
+          navigation.navigate("Notices");
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+    }
   }
 
   useEffect(() => {
@@ -54,15 +96,46 @@ export default function UserDetails({ navigation, route }) {
             display: data._isAdmin_confirm ? "none" : null
           }}
         >
-          <Button style={{ width: "100%" }} color={"success"}>
+          <Button
+            onPress={() => {
+              studentState("Accpet");
+            }}
+            style={{ width: "100%" }}
+            color={"success"}
+          >
             Accpet
           </Button>
-          <Button style={{ width: "100%" }} color={"error"}>
-            Refound
+          <Button
+            onPress={() => {
+              studentState(null);
+            }}
+            style={{ width: "100%" }}
+            color={"error"}
+          >
+            unAccpet
           </Button>
         </ListItem>
         <ListItem>
-          <Button>Blocked</Button>
+          {data._isBlocked ? (
+            <Button
+              color={"warning"}
+              onPress={() => {
+                studentState("Blocked");
+              }}
+              icon={{ name: "done", color: "#fff" }}
+            >
+              un Blocked
+            </Button>
+          ) : (
+            <Button
+              onPress={() => {
+                studentState("Blocked");
+              }}
+              icon={{ name: "block", color: "#fff" }}
+            >
+              Blocked
+            </Button>
+          )}
         </ListItem>
       </View>
     </ScrollView>

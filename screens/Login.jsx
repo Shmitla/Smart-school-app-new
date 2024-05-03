@@ -23,6 +23,11 @@ export default function Login({ navigation }) {
       .post("/users/login", loginInfo)
       .then((res) => {
         if (res.status === 200) {
+          if (res.data.user._isBlocked) {
+            alert("your accout is blocked  , please contact with us");
+            navigation.navigate("Home");
+            return;
+          }
           setLoginInfo({ phone: "", password: "" });
           storage.save({ key: "userInfo", data: res.data.user });
           setUser(res.data.user);
@@ -44,7 +49,7 @@ export default function Login({ navigation }) {
 
   useEffect(() => {
     // if (user) {
-      navigation.navigate("Profile");
+    navigation.navigate("Profile");
     // }
   }, [user]);
   return (
