@@ -3,28 +3,8 @@ import { View } from "react-native";
 import { Input, Button, Text, Card } from "@rneui/themed";
 import registerStyles from "../css/register";
 import axios from "axios";
-import { launchImageLibrary } from 'react-native-image-picker';
-import { ScrollView } from "react-native-gesture-handler";
-import Uploader from "../utils/uploader/index"
 
 export default function Register({ navigation }) {
-  const [photo, setPhoto] = React.useState(null);
-
-  const handleChoosePhoto = () => {
-    launchImageLibrary({ noData: true }, (response) => {
-      // console.log(response);
-      if (response) {
-        setPhoto(response);
-      }
-    });
-  };
-  const [registerInfo, setRegisterInfo] = useState({});
-
-  const handleChange = (name, value) => {
-    setRegisterInfo({ ...registerInfo, [name]: value });
-  };
-
-  
   async function addUser() {
     console.log(registerInfo);
     await axios
@@ -39,7 +19,7 @@ export default function Register({ navigation }) {
   
 
   return (
-    <ScrollView>
+
      <View style={registerStyles.container}>
        <Card style={registerStyles.card}>
          <Card.Title style={registerStyles.title}>Register now</Card.Title> 
@@ -92,8 +72,6 @@ export default function Register({ navigation }) {
         inputStyle={{ paddingHorizontal: 10, color: "#000" }}
         placeholderTextColor="#000"
       />
-     <Button title="Choose Photo" onPress={handleChoosePhoto} type="solid"/>
-
       <Button
         size="lg"
         buttonStyle={registerStyles.registerBtn}
@@ -112,6 +90,5 @@ export default function Register({ navigation }) {
         </Text>
       </Text>
     </View>
-    </ScrollView>
   );
 }
