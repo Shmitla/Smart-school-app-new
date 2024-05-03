@@ -28,6 +28,11 @@ export default function Login({ navigation }) {
             navigation.navigate("Home");
             return;
           }
+          if (!res.data.user._isAdmin_confirm) {
+            alert("your accout is not Accpet yet   , please wait ....");
+            navigation.navigate("Home");
+            return;
+          }
           setLoginInfo({ phone: "", password: "" });
           storage.save({ key: "userInfo", data: res.data.user });
           setUser(res.data.user);
