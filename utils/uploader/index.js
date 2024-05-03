@@ -1,4 +1,4 @@
-import { launchImageLibrary } from 'react-native-image-picker';
+import { Platform } from "react-native";
 
 const createFormData = (photo, body = {}) => {
     const data = new FormData();
