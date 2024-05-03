@@ -3,7 +3,7 @@ import { StyleSheet } from "react-native";
 const userDetailsStyles = StyleSheet.create({
   container: {
     flex: 1,
-    padding: 20,
+    padding:5
   },
   content: {
   
