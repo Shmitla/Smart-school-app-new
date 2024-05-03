@@ -4,22 +4,54 @@ import { Input, Button, Text, Card } from "@rneui/themed";
 import registerStyles from "../css/register";
 import axios from "axios";
 import storage from "../utils/storage/storage";
-import { launchImageLibrary } from "react-native-image-picker";
+import {launchImageLibrary} from "react-native-image-picker";
+
+
 
 export default function Register({ navigation }) {
   const [registerInfo, setRegisterInfo] = useState({});
-    const [photo, setPhoto] = useState(null);
-
+ const [imageUri, setImageUri] = useState(null);
   const handleChange = (name, value) => {
     setRegisterInfo({ ...registerInfo, [name]: value });
   };
-const handleChoosePhoto = () => {
-  launchImageLibrary({noData :true}, (response) => {
-   console.log(response)
-    if (response) {
-      setPhoto(response);
+
+//   const options = {mediaType:"photo"}
+
+// const handleChoosePhoto =  () => {
+// launchImageLibrary(options, (response) => {
+//     console.log(options);
+//       setPhoto(response);
+//   });
+ 
+// };
+const pickImage = async () => {
+  try {
+    const options = {
+      title: "Select Image",
+      customButtons: [
+        { name: "customOptionKey", title: "Choose Photo from Custom App" }
+      ],
+      storageOptions: {
+        skipBackup: true, // Prevent image backup (iOS)
+        path: "images/" // (Optional) Specify a path to store the image
+      },
+      mediaType: "photo", // Only allow photos (optional)
+      quality: 1 // Image quality (0-1, default 1)
+    };
+
+    const result = await launchImageLibrary(options);
+
+    if (result.didCancel) {
+      console.log("User cancelled image picker");
+    } else if (result.error) {
+      console.log("ImagePicker Error:", result.error);
+    } else {
+      const source = { uri: result.uri };
+      setImageUri(source.uri);
     }
-  });
+  } catch (error) {
+    console.error("Error picking image:", error);
+  }
 };
 
   const handleRegister = async () => {
@@ -95,7 +127,7 @@ const handleChoosePhoto = () => {
           inputStyle={{ paddingHorizontal: 10, color: "#000" }}
           placeholderTextColor="#000"
         />
-        <Button title="Choose Photo" onPress={handleChoosePhoto} />
+        <Button title="Choose Photo" onPress={pickImage} />
         <Button
           size="lg"
           buttonStyle={registerStyles.registerBtn}
