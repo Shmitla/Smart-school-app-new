@@ -8,11 +8,13 @@ import Register from './screens/Register';
 import axios from 'axios';
 import { DataStoreProvider } from './context/DateStor';
 import Profile from './screens/Profile';
-import Stutents from "./screens/admins/Stutents";
+import Stutents from "./screens/admins/Students";
 import UserDetails from "./screens/UserDetails";
 import Notices from "./screens/admins/Notices";
 import Admins from "./screens/admins/Admins";
 import AddnewAdmin from "./screens/admins/AddnewAdmin";
+import Departments from "./screens/Departments"
+import Camera from "./screens/Camare/Camera"
 
 const Stack = createNativeStackNavigator();
 
@@ -35,6 +37,8 @@ export default function App() {
           <Stack.Screen name="Notices" component={Notices} />
           <Stack.Screen name="Admins" component={Admins} />
           <Stack.Screen name="Add New Admin" component={AddnewAdmin} />
+          <Stack.Screen name="Departments" component={Departments}/>
+          <Stack.Screen name="Camera" component={Camera}/>
         </Stack.Navigator>
       </NavigationContainer>
     </DataStoreProvider>
