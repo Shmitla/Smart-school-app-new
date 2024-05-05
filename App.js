@@ -13,8 +13,8 @@ import UserDetails from "./screens/UserDetails";
 import Notices from "./screens/admins/Notices";
 import Admins from "./screens/admins/Admins";
 import AddnewAdmin from "./screens/admins/AddnewAdmin";
-import Departments from "./screens/Departments"
-import Camera from "./screens/Camare/Camera"
+import Departments from "./screens/admins/Departments"
+import Camera from "./screens/admins/Camare/Camera"
 
 const Stack = createNativeStackNavigator();
 
