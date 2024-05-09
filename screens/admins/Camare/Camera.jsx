@@ -3,7 +3,7 @@ import { WebView } from 'react-native-webview';
 const Camera = () => {
   return (
     <WebView
-      source={{ uri: 'http://127.0.0.1:5001' }}
+      source={{ uri: 'http://192.168.1.25:5001' }}
       style={{ flex: 1 }}
     />
   );

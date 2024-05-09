@@ -1,11 +1,31 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
-import { ScrollView, Text, View, Image } from "react-native";
+import { ScrollView, Text, View, Image ,Alert} from "react-native";
 import userDetailsStyles from "../css/userDetails";
 import { ListItem, Button } from "@rneui/themed";
 import { Store } from "../context/DateStor";
-
 export default function UserDetails({ navigation, route }) {
+  const studentId = "15S";
+  const [studentInfo, setStudentInfo] = useState(null);
+  useEffect(() => {
+    const fetchStudentInfo = async () => {
+      try {
+        const response = await fetch(`http://192.168.1.17:5001/get_student?student_id=${studentId}`);
+        console.log("hedha",response)
+        if (!response.ok) {
+          throw new Error('Failed to fetch student information');
+        }
+        const data = await response.json();
+        setStudentInfo(data);
+        console.log(data)
+      } catch (error) {
+        console.error(error);
+        Alert.alert('Error', 'Failed to fetch student information');
+      }
+    };
+
+    fetchStudentInfo();
+  }, [studentId]);
   const { id } = route.params;
   const { getStudentData, getNewStuedent } = Store();
   const [data, setData] = useState({});
@@ -19,7 +39,6 @@ export default function UserDetails({ navigation, route }) {
         console.log(err);
       });
   }
-
   async function studentState(title) {
     if (title === "Blocked") {
       await axios
@@ -63,17 +82,40 @@ export default function UserDetails({ navigation, route }) {
   useEffect(() => {
     getDetails();
   }, []);
+  const [imageData, setImageData] = useState(null);
+
+  useEffect(() => {
+    // Fetch student image data from Flask server
+    fetch(`http://192.168.1.17:5001/get_student_image?student_id=${studentId}`)
+      .then(response => response.json())
+      .then(data => {
+        if (data.image) {
+          setImageData(`data:image/jpeg;base64,${data.image}`);
+        } else {
+          console.error('Error fetching student image:', data.error);
+        }
+      })
+      .catch(error => console.error('Error fetching student image:', error));
+      console.log("hedha",data)
+  }, [studentId]);
   return (
     <ScrollView>
       <View style={userDetailsStyles.container}>
         <View>
-          <Image
-            source={{
-              uri: "https://i.pinimg.com/564x/61/cc/b5/61ccb579c0aec956c711596297ccb878.jpg"
-            }}
-            alt="img"
-            style={{ width: "100%", height: 500 }}
-          />
+          {studentInfo ? (
+                  <View>
+                    <Text>ID: {studentInfo.ID_STUDENT}</Text>
+                    <Text>Name: {studentInfo.NAME}</Text>
+                    <Text>Path: {studentInfo.PATH}</Text>
+                  </View>
+                ) : (
+                  <Text>Loading...</Text>
+                )}
+          {imageData ? (
+                  <Image source={{ uri: imageData }} style={{ width: 200, height: 200 }} />
+                ) : (
+                  <Text>Loading...</Text>
+                )}
         </View>
         <ListItem bottomDivider>
           <ListItem.Title>Name : {data?.userName} </ListItem.Title>

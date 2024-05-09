@@ -12,7 +12,7 @@ export default function Register({ navigation }) {
   const [registerInfo, setRegisterInfo] = useState({});
   const getStudents = async () => {
     try {
-      const response = await fetch('http://127.0.0.1:5001/get_students');
+      const response = await fetch('http://192.168.1.25:5001/get_students');
       if (!response.ok) {
         throw new Error('Network response was not ok');
       }
@@ -72,7 +72,7 @@ export default function Register({ navigation }) {
       formData.append('phone', registerInfo.phone);
       formData.append('school', registerInfo.school);
       // Make the API request to register the user
-      fetch('http://127.0.0.1:5001/add_student_face', {
+      fetch('192.168.1.25:5001/add_student_face', {
         method: 'POST',
         body: formData,
         headers: {
@@ -92,9 +92,9 @@ export default function Register({ navigation }) {
       AddNew.append('ID_STUDENT', numberOfStudents + "S");
       AddNew.append('NAME', registerInfo.userName);
       // Remove the empty array for 'Matiere' if not needed
-      AddNew.append('PATH', "uploads" + registerInfo.userName + ".jpg");
+      AddNew.append('PATH', "uploads/" + numberOfStudents + "S.jpg");
 
-      fetch('http://127.0.0.1:5001/add_student', {
+      fetch('http://192.168.1.25:5001/add_student', {
         method: 'POST',
         body: AddNew,
       })
@@ -107,9 +107,15 @@ export default function Register({ navigation }) {
           console.error('Error:', error);
           // Handle error
         });
+      const formDataUser = new FormData();
+      formDataUser.append('userName', registerInfo.userName);
+      formDataUser.append('email', registerInfo.email);
+      formDataUser.append('password', registerInfo.password);
+      formDataUser.append('phone', registerInfo.phone);
+      formDataUser.append('school', registerInfo.school);
 
       // Make the API request to register the user
-      const response = await axios.post("/users", formData, {
+      const response = await axios.post("/users", formDataUser, {
         headers: {
           'Content-Type': 'multipart/form-data',
         },

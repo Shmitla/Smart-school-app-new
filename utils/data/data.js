@@ -20,7 +20,7 @@ export const admin = [
     screen: "Departments"
   },
   {
-    title: "Subjects",
+    title: "Classes",
     icon: "subject",
     screen: "Subjects"
   },
@@ -32,28 +32,18 @@ export const admin = [
 ];
 export const student = [
   {
-    title: "home",
-    icon: "Home",
+    title: "Home",
+    icon: "home",
     screen: "Home"
   },
   {
     title: "Attendance",
-    icon: "Home",
+    icon: "familiar_face_and_zone",
     screen: "Home"
   },
   {
-    title: "",
-    icon: "Home",
-    screen: "Home"
-  },
-  {
-    title: "home",
-    icon: "Home",
-    screen: "Home"
-  },
-  {
-    title: "home",
-    icon: "Home",
+    title: "Edit",
+    icon: "edit",
     screen: "Home"
   }
 ];
