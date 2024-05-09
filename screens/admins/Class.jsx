@@ -1,25 +1,33 @@
-import React, { useEffect, useRef } from 'react';
-import { View, StyleSheet } from 'react-native';
+import React, { useEffect, useState } from 'react';
+import { View, Text } from 'react-native';
 
-const Departments = () => {
-    return (
-        <View style={styles.container}>
-            <Text style={styles.text}>Hello, React Native!</Text>
+const MyClassComponent = () => {
+  const [detectedNames, setDetectedNames] = useState(null);
+
+  useEffect(() => {
+    const fetchDetectedNames = async () => {
+      try {
+        const response = await fetch('detected_names.json'); 
+        setDetectedNames(data);
+      } catch (error) {
+        console.error('Error fetching detected names:', error);
+      }
+    };
+
+    fetchDetectedNames();
+  }, []);
+
+  return (
+    <View>
+      <Text>Detected Names:</Text>
+      {Object.entries(detectedNames).map(([hour, names]) => (
+        <View key={hour}>
+          <Text>{hour}</Text>
+          <Text>{names.join(', ')}</Text>
         </View>
-    );
+      ))}
+    </View>
+  );
 };
 
-const styles = StyleSheet.create({
-    container: {
-        flex: 1,
-        justifyContent: 'center',
-        alignItems: 'center',
-        backgroundColor: '#fff',
-    },
-    text: {
-        fontSize: 24,
-        fontWeight: 'bold',
-    },
-});
-
-export default Departments;
+export default MyClassComponent;

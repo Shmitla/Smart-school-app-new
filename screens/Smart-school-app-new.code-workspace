@@ -1,0 +1,15 @@
+{
+	"folders": [
+		{
+			"path": ".."
+		},
+		{
+			"path": "../../../Desktop/Code/Server"
+		}
+	],
+	"settings": {
+		"githubPullRequests.ignoredPullRequestBranches": [
+			"main"
+		]
+	}
+}

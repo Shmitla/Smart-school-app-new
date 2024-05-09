@@ -5,7 +5,7 @@ import userDetailsStyles from "../css/userDetails";
 import { ListItem, Button } from "@rneui/themed";
 import { Store } from "../context/DateStor";
 export default function UserDetails({ navigation, route }) {
-  const studentId = "15S";
+  const studentId = "1S";
   const [studentInfo, setStudentInfo] = useState(null);
   useEffect(() => {
     const fetchStudentInfo = async () => {
@@ -26,6 +26,7 @@ export default function UserDetails({ navigation, route }) {
 
     fetchStudentInfo();
   }, [studentId]);
+  
   const { id } = route.params;
   const { getStudentData, getNewStuedent } = Store();
   const [data, setData] = useState({});
