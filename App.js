@@ -14,7 +14,8 @@ import Notices from "./screens/admins/Notices";
 import Admins from "./screens/admins/Admins";
 import AddnewAdmin from "./screens/admins/AddnewAdmin";
 import Departments from "./screens/admins/Departments"
-import Camera from "./screens/admins/Camare/Camera"
+import Camera from "./screens/admins/Camare/Camera";
+import Classes from "./screens/admins/Class";
 
 const Stack = createNativeStackNavigator();
 
@@ -38,6 +39,7 @@ export default function App() {
           <Stack.Screen name="Admins" component={Admins} />
           <Stack.Screen name="Add New Admin" component={AddnewAdmin} />
           <Stack.Screen name="Departments" component={Departments}/>
+          <Stack.Screen name="Class" component={Classes}/>
           <Stack.Screen name="Camera" component={Camera}/>
         </Stack.Navigator>
       </NavigationContainer>
