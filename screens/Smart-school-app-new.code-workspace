@@ -1,10 +1,12 @@
 {
 	"folders": [
 		{
-			"path": ".."
+			"name": "Server",
+			"path": "../../../Desktop/Code/Server"
 		},
 		{
-			"path": "../../../Desktop/Code/Server"
+			"name": "Smart-school-app-new",
+			"path": ".."
 		}
 	],
 	"settings": {
