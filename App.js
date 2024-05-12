@@ -18,8 +18,9 @@ import Camera from "./screens/admins/Camare/Camera";
 import Classes from "./screens/admins/Class";
 
 const Stack = createNativeStackNavigator();
-
-axios.defaults.baseURL = 'https://smart-school-app-back.onrender.com';//fel code kollah
+const api = "https://smart-school-app-back.onrender.com"
+const dev = "http://localhost:3001";
+axios.defaults.baseURL = api;//fel code kollah
 export default function App() {
   return (
     <DataStoreProvider>
